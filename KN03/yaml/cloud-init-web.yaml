@@ -1,0 +1,44 @@
+# cloud-init-web.yaml
+
+# Pakete/Software aktualisieren
+# Apache Webserver installieren
+packages:
+  - update
+  - apache2
+  - php
+  - libapache2-mod-php
+  - adminer
+
+# Webserver neu starten
+# In das Home-Verzeichnis wechseln
+# Repository klonen
+# PHP-Dateien in das Verzeichnis des Webservers kopieren
+runcmd:
+  - sudo a2enconf adminer
+  - sudo systemctl restart apache2
+  - cd ~
+
+# Datei für PHP-Dateien erstellen
+write_files:
+  - path: /var/www/html/index.php
+    content: |
+      <?php
+        $servername = "127.0.0.1";
+        $username = "admin";
+        $password = "password";
+        $dbname = "mysql";
+
+        // Create connection
+        $conn = new mysqli($servername, $username, $password, $dbname);
+        // Check connection
+        if ($conn->connect_error) {
+                die("Connection failed: " . $conn->connect_error);
+        }
+
+        $sql = "select Host, User from mysql.user;";
+        $result = $conn->query($sql);
+        while($row = $result->fetch_assoc()){
+                echo($row["Host"] . " / " . $row["User"] . "<br />");
+        }
+        //var_dump($result);
+      ?>
