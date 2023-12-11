@@ -8,11 +8,12 @@
 </head>
 
 <body>
-    Hier kommt Ihr Text.
+    Berg mit Schnee, welcher rot von beleuchtet wird.
     <br />
-    <img src="URL-To-The-Image" />
+    <img
+        src="https://dasistdasbucketvonsandro.s3.amazonaws.com/Yamat0_mountains_0a633cb9-3c8c-4e7c-a08e-018609bd7956.png" />
 
-    Platzieren Sie hier notwendige Quellenangaben, z.B. wenn der Inhalt von unsplash kommt.
+    Bild wurde mit Midjourney generiert.
 </body>
 
 </html>

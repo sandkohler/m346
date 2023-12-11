@@ -17,46 +17,27 @@ packages: # Installierte Pakete
   - apache2
   - php
   - libapache2-mod-php
-  - adminer
-  - php-mysqli
-
-# Webserver neu starten
-# In das Home-Verzeichnis wechseln
-# Repository klonen
-# PHP-Dateien in das Verzeichnis des Webservers kopieren
-runcmd:
-  - sudo a2enconf adminer
-  - sudo systemctl restart apache2
 
 # Datei für PHP-Dateien erstellen
 write_files:
-  - path: /var/www/html/db.php
+  - path: /var/www/html/image.php
     content: |
-      <?php
-        $servername = "54.224.32.33";
-        $username = "admin";
-        $password = "password";
-        $dbname = "mysql";
+      <?php $ihrname = "Sandro Kohler"; ?>
+      <html>
 
-        // Create connection
-        $conn = new mysqli($servername, $username, $password, $dbname);
-        // Check connection
-        if ($conn->connect_error) {
-                die("Connection failed: " . $conn->connect_error);
-        }
+      <head>
+          <title>
+              <?php echo ($ihrname) ?>
+          </title>
+      </head>
 
-        $sql = "select Host, User from mysql.user;";
-        $result = $conn->query($sql);
-        while($row = $result->fetch_assoc()){
-                echo($row["Host"] . " / " . $row["User"] . "<br />");
-        }
-        //var_dump($result);
-      ?>
-  - path: /var/www/html/info.php
-    content: |
-      <?php
+      <body>
+          Berg mit Schnee, welcher rot von beleuchtet wird.
+          <br />
+          <img
+              src="https://dasistdasbucketvonsandro.s3.amazonaws.com/Yamat0_mountains_0a633cb9-3c8c-4e7c-a08e-018609bd7956.png" />
 
-      // Show all information, defaults to INFO_ALL
-      phpinfo();
+          Bild wurde mit Midjourney generiert.
+      </body>
 
-      ?>
+      </html>
