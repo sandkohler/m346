@@ -1,0 +1,16 @@
+#cloud-config
+hostname: sandro
+ssh_pwauth: False
+users:
+  - name: ubuntu
+    ssh-authorized-keys:
+      - xxxaaabbbcccxxx
+    sudo: ["ALL=(ALL) NOPASSWD:ALL"]
+    groups: [users, admin]
+    shell: /bin/bash
+    home: /home/ubuntu
+  - name: tbz
+    inactive: True
+    groups: users
+    shell: /usr/sbin/nologin
+    home: /home/tbz
